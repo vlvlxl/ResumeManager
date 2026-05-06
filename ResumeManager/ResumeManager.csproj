@@ -46,18 +46,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Education.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="AddEducationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AddJobListingForm.cs">
+      <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AddSkillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddWorkExperienceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateResumeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Education.cs" />
     <Compile Include="JobListing.cs" />
+    <Compile Include="JobSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="JobSearchManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resume.cs" />
+    <Compile Include="ResumeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchJobListingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectResumeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WorkExperience.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
