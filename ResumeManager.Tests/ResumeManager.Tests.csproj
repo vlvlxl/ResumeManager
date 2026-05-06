@@ -49,11 +49,22 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="BoundaryTests.cs" />
+    <Compile Include="EducationTests.cs" />
+    <Compile Include="JobListingTests.cs" />
+    <Compile Include="JobSearchManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResumeTests.cs" />
+    <Compile Include="WorkExperienceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ResumeManager\ResumeManager.csproj">
+      <Project>{e5b365af-f724-4863-8f5a-02e07844f46c}</Project>
+      <Name>ResumeManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

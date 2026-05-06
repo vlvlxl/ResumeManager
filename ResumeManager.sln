@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeManager", "ResumeManager\ResumeManager.csproj", "{E5B365AF-F724-4863-8F5A-02E07844F46C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeManager.Tests", "ResumeManager.Tests\ResumeManager.Tests.csproj", "{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E5B365AF-F724-4863-8F5A-02E07844F46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5B365AF-F724-4863-8F5A-02E07844F46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5B365AF-F724-4863-8F5A-02E07844F46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
