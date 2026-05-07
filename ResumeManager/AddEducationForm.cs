@@ -26,6 +26,11 @@ public class AddEducationForm : Form
 
         okButton.Click += (sender, e) =>
         {
+            if (string.IsNullOrWhiteSpace(institutionTextBox.Text))
+            {
+                MessageBox.Show("Учебное заведение не может быть пустым.");
+                return;
+            }
             Institution = institutionTextBox.Text;
             Degree = degreeTextBox.Text;
             Period = periodTextBox.Text;
