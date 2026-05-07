@@ -34,6 +34,11 @@ public class AddWorkExperienceForm : Form
                 MessageBox.Show("Должность не может быть пустой.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(companyTextBox.Text))
+            {
+                MessageBox.Show("Компания не может быть пустой.");
+                return;
+            }
             Position = positionTextBox.Text;
             Company = companyTextBox.Text;
             Period = periodTextBox.Text;
