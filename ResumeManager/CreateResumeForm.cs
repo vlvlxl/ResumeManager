@@ -31,7 +31,11 @@ public class CreateResumeForm : Form
                 MessageBox.Show("Имя не может быть пустым.");
                 return;
             }
-
+            if (string.IsNullOrWhiteSpace(contactTextBox.Text))
+            {
+                MessageBox.Show("Контактная информация не может быть пустой.");
+                return;
+            }
             Name = nameTextBox.Text;
             ContactInfo = contactTextBox.Text;
             Objective = objectiveTextBox.Text;
