@@ -20,6 +20,11 @@ public class AddSkillForm : Form
 
         okButton.Click += (sender, e) =>
         {
+            if (string.IsNullOrWhiteSpace(skillTextBox.Text))
+            {
+                MessageBox.Show("Навык не может быть пустым.");
+                return;
+            }
             Skill = skillTextBox.Text;
             DialogResult = DialogResult.OK;
             Close();
