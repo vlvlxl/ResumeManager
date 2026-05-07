@@ -34,6 +34,11 @@ public class AddJobListingForm : Form
                 MessageBox.Show("Название вакансии не может быть пустым.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(companyTextBox.Text))
+            {
+                MessageBox.Show("Компания не может быть пустой.");
+                return;
+            }
             JobTitle = jobTitleTextBox.Text;
             Company = companyTextBox.Text;
             Description = descriptionTextBox.Text;
