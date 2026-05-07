@@ -26,6 +26,12 @@ public class CreateResumeForm : Form
 
         okButton.Click += (sender, e) =>
         {
+            if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+            {
+                MessageBox.Show("Имя не может быть пустым.");
+                return;
+            }
+
             Name = nameTextBox.Text;
             ContactInfo = contactTextBox.Text;
             Objective = objectiveTextBox.Text;
