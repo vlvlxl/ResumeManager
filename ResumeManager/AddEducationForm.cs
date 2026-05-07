@@ -36,6 +36,11 @@ public class AddEducationForm : Form
                 MessageBox.Show("Степень не может быть пустой.");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(periodTextBox.Text))
+            {
+                MessageBox.Show("Период не может быть пустым.");
+                return;
+            }
             Institution = institutionTextBox.Text;
             Degree = degreeTextBox.Text;
             Period = periodTextBox.Text;
