@@ -29,6 +29,11 @@ public class AddWorkExperienceForm : Form
 
         okButton.Click += (sender, e) =>
         {
+            if (string.IsNullOrWhiteSpace(positionTextBox.Text))
+            {
+                MessageBox.Show("Должность не может быть пустой.");
+                return;
+            }
             Position = positionTextBox.Text;
             Company = companyTextBox.Text;
             Period = periodTextBox.Text;
