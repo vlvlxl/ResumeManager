@@ -9,7 +9,7 @@ public class JobSearchForm : Form
     public JobSearchForm()
     {
         Text = "Управление резюме и поиском работы";
-        Width = 400;
+        Width = 440;
         Height = 250;
         StartPosition = FormStartPosition.CenterScreen;
         jobSearchManager = new JobSearchManager();
@@ -20,7 +20,7 @@ public class JobSearchForm : Form
     {
         var createResumeButton = new Button
         {
-            Location = new Point(10, 20),
+            Location = new Point(30, 20),
             Text = "Создать резюме",
             Size = new Size(120, 25)
         };
@@ -28,7 +28,7 @@ public class JobSearchForm : Form
 
         var addSkillButton = new Button
         {
-            Location = new Point(140, 20),
+            Location = new Point(160, 20),
             Text = "Добавить навык",
             Size = new Size(100, 25)
         };
@@ -36,7 +36,7 @@ public class JobSearchForm : Form
 
         var addWorkExperienceButton = new Button
         {
-            Location = new Point(250, 20),
+            Location = new Point(270, 20),
             Text = "Добавить опыт",
             Size = new Size(120, 25)
         };
@@ -44,31 +44,31 @@ public class JobSearchForm : Form
 
         var addEducationButton = new Button
         {
-            Location = new Point(10, 50),
+            Location = new Point(30, 50),
             Text = "Добавить образование",
-            Size = new Size(120, 25)
+            Size = new Size(120, 35)
         };
         addEducationButton.Click += (sender, e) => jobSearchManager.AddEducationToResume();
 
         var displayResumeButton = new Button
         {
-            Location = new Point(140, 50),
+            Location = new Point(160, 50),
             Text = "Показать резюме",
-            Size = new Size(100, 25)
+            Size = new Size(100, 35)
         };
         displayResumeButton.Click += (sender, e) => jobSearchManager.DisplayResume();
 
         var addJobListingButton = new Button
         {
-            Location = new Point(250, 50),
+            Location = new Point(270, 50),
             Text = "Добавить вакансию",
-            Size = new Size(100, 25)
+            Size = new Size(120, 35)
         };
         addJobListingButton.Click += (sender, e) => jobSearchManager.AddJobListing();
 
         var searchJobListingsButton = new Button
         {
-            Location = new Point(10, 80),
+            Location = new Point(30, 88),
             Text = "Поиск вакансий",
             Size = new Size(120, 25)
         };

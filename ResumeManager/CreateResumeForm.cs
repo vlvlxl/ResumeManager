@@ -7,22 +7,72 @@ public class CreateResumeForm : Form
     public string Name { get; private set; }
     public string ContactInfo { get; private set; }
     public string Objective { get; private set; }
+    private const int MAX_NAME_LENGTH = 50;
+    private const int MAX_CONTACT_INFO_LENGTH = 50;
+    private const int MAX_OBJECTIVE_LENGTH = 500;
 
     public CreateResumeForm()
     {
         Text = "Создать резюме";
-        Width = 300;
-        Height = 200;
+        Width = 505;       
+        Height = 320;      
         StartPosition = FormStartPosition.CenterScreen;
 
-        var nameLabel = new Label { Text = "Имя:", Location = new Point(10, 10) };
-        var nameTextBox = new TextBox { Location = new Point(10, 30), Width = 260 };
-        var contactLabel = new Label { Text = "Контактная информация:", Location = new Point(10, 50) };
-        var contactTextBox = new TextBox { Location = new Point(10, 70), Width = 260 };
-        var objectiveLabel = new Label { Text = "Цель:", Location = new Point(10, 90) };
-        var objectiveTextBox = new TextBox { Location = new Point(10, 110), Width = 260 };
-        var okButton = new Button { Text = "OK", Location = new Point(10, 140), Width = 80 };
-        var cancelButton = new Button { Text = "Отмена", Location = new Point(100, 140), Width = 80 };
+        var nameLabel = new Label
+        {
+            Text = "Имя:",
+            Location = new Point(10, 10),    
+            AutoSize = true
+        };
+        var nameTextBox = new TextBox
+        {
+            Location = new Point(10, 30),    
+            Width = 470,                     
+            Height = 25,
+            MaxLength = MAX_NAME_LENGTH
+        };
+        var contactLabel = new Label
+        {
+            Text = "Контактная информация:",
+            Location = new Point(10, 65),    
+            AutoSize = true
+        };
+        var contactTextBox = new TextBox
+        {
+            Location = new Point(10, 85),    
+            Width = 470,                     
+            Height = 25,
+            MaxLength = MAX_CONTACT_INFO_LENGTH
+        };
+        var objectiveLabel = new Label
+        {
+            Text = "Цель:",
+            Location = new Point(10, 120),     
+            AutoSize = true
+        };
+        var objectiveTextBox = new TextBox
+        {
+            Location = new Point(10, 145),   
+            Width = 470,                     
+            Height = 80,                    
+            Multiline = true,
+            ScrollBars = ScrollBars.Vertical,
+            MaxLength = MAX_OBJECTIVE_LENGTH
+        };
+        var okButton = new Button
+        {
+            Text = "OK",
+            Location = new Point(10, 240),   
+            Width = 100,                    
+            Height = 30
+        };
+        var cancelButton = new Button
+        {
+            Text = "Отмена",
+            Location = new Point(120, 240), 
+            Width = 100,
+            Height = 30
+        };
 
         okButton.Click += (sender, e) =>
         {

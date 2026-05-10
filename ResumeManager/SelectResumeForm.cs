@@ -7,23 +7,40 @@ public class SelectResumeForm : Form
 {
     public List<Resume> Resumes { get; set; }
     public Resume SelectedResume { get; private set; }
+    private Dictionary<int, Resume> resumeMap = new Dictionary<int, Resume>();
 
     public SelectResumeForm()
     {
         Text = "Выбрать резюме";
-        Width = 300;
-        Height = 200;
+        Width = 500;
+        Height = 310;
         StartPosition = FormStartPosition.CenterScreen;
 
-        var resumesListBox = new ListBox { Location = new Point(10, 10), Width = 260, Height = 150 };
-        var okButton = new Button { Text = "OK", Location = new Point(10, 170), Width = 80 };
-        var cancelButton = new Button { Text = "Отмена", Location = new Point(100, 170), Width = 80 };
+        var resumesListBox = new ListBox
+        {
+            Location = new Point(10, 10),
+            Width = 460,
+            Height = 220
+        };
+
+        var okButton = new Button
+        {
+            Text = "OK",
+            Location = new Point(10, 240),
+            Width = 100
+        };
+        var cancelButton = new Button
+        {
+            Text = "Отмена",
+            Location = new Point(130, 240),
+            Width = 100
+        };
 
         okButton.Click += (sender, e) =>
         {
             if (resumesListBox.SelectedItem != null)
             {
-                SelectedResume = (Resume)resumesListBox.SelectedItem;
+                SelectedResume = resumeMap[resumesListBox.SelectedIndex];
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -45,9 +62,28 @@ public class SelectResumeForm : Form
         base.OnLoad(e);
         if (Resumes != null)
         {
+            int index = 0;
             foreach (var resume in Resumes)
             {
-                ((ListBox)Controls[0]).Items.Add(resume);
+                string displayName;
+                if (string.IsNullOrWhiteSpace(resume.Objective))
+                {
+                    displayName = $"[{index + 1}] {resume.Name}";
+                }
+                else
+                {
+                    string objectiveText = resume.Objective;
+                    int firstNewLine = objectiveText.IndexOf('\n');
+                    if (firstNewLine >= 0)
+                    {
+                        objectiveText = objectiveText.Substring(0, firstNewLine).Trim();
+                    }
+                    displayName = $"[{index + 1}] {resume.Name} - {objectiveText}";
+                }
+
+                ((ListBox)Controls[0]).Items.Add(displayName);
+                resumeMap[index] = resume;
+                index++;
             }
         }
     }

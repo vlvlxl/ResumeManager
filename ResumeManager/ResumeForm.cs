@@ -6,32 +6,31 @@ public class ResumeForm : Form
 {
     public Resume Resume { get; set; }
 
+    private TextBox resumeTextBox;
+
     public ResumeForm()
     {
         Text = "Резюме";
-        Width = 400;
-        Height = 400;
+        Width = 600;
+        Height = 570;
         StartPosition = FormStartPosition.CenterScreen;
 
-        var resumeTextBox = new TextBox { Location = new Point(10, 10), Width = 360, Height = 360, Multiline = true };
-        var okButton = new Button { Text = "OK", Location = new Point(10, 380), Width = 80 };
-        var cancelButton = new Button { Text = "Отмена", Location = new Point(100, 380), Width = 80 };
-
-        okButton.Click += (sender, e) =>
+        resumeTextBox = new TextBox
         {
-            DialogResult = DialogResult.OK;
-            Close();
+            Location = new Point(10, 10),
+            Width = 560,
+            Height = 470,
+            Multiline = true,
+            ScrollBars = ScrollBars.Vertical,
+            ReadOnly = true,
+            Font = new Font("Segoe UI", 10)
         };
 
-        cancelButton.Click += (sender, e) =>
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        };
-
+        var okButton = new Button { Text = "OK", Location = new Point(10, 490), Width = 100 };
+        okButton.Click += (sender, e) => { DialogResult = DialogResult.OK; Close(); };
+        
         Controls.Add(resumeTextBox);
         Controls.Add(okButton);
-        Controls.Add(cancelButton);
     }
 
     protected override void OnLoad(EventArgs e)
@@ -39,8 +38,76 @@ public class ResumeForm : Form
         base.OnLoad(e);
         if (Resume != null)
         {
-            var resumeText = $"Имя: {Resume.Name}\nКонтактная информация: {Resume.ContactInfo}\nЦель: {Resume.Objective}\n\nНавыки:\n{string.Join("\n", Resume.Skills)}\n\nОпыт работы:\n{string.Join("\n", Resume.WorkExperiences)}\n\nОбразование:\n{string.Join("\n", Resume.Educations)}";
-            ((TextBox)Controls[0]).Text = resumeText;
+            var nl = Environment.NewLine;
+            var resumeText = "РЕЗЮМЕ" + nl + nl +
+                           "ЛИЧНАЯ ИНФОРМАЦИЯ" + nl +
+                           $"Имя: {Resume.Name}" + nl +
+                           $"Контактная информация: {Resume.ContactInfo}" + nl +
+                           $"Цель: ";
+            if (string.IsNullOrWhiteSpace(Resume.Objective))
+            {
+                resumeText += "-" + nl + nl;
+            }
+            else
+            {
+                resumeText += nl + $"{Resume.Objective}" + nl + nl;
+            }
+            
+            resumeText += "НАВЫКИ" + nl;
+            if (Resume.Skills.Count > 0)
+            {
+                for (int i = 0; i < Resume.Skills.Count; i++)
+                    resumeText += $"{i + 1}. {Resume.Skills[i]}" + nl;
+            }
+            else
+            {
+                resumeText += "Нет навыков" + nl;
+            }
+
+            resumeText += nl + "ОПЫТ РАБОТЫ" + nl;
+
+            if (Resume.WorkExperiences.Count > 0)
+            {
+                for (int i = 0; i < Resume.WorkExperiences.Count; i++)
+                {
+                    var exp = Resume.WorkExperiences[i];
+                    resumeText += $"{i + 1}. {exp.Position}" + nl +
+                                 $"   Компания: {exp.Company}" + nl +
+                                 $"   Период: {exp.Period}" + nl +
+                                 $"   Описание: {exp.Description}" + nl + nl;
+                }
+            }
+            else
+            {
+                resumeText += "Нет опыта работы" + nl;
+            }
+
+            resumeText += nl + "ОБРАЗОВАНИЕ" + nl;
+
+            if (Resume.Educations.Count > 0)
+            {
+                for (int i = 0; i < Resume.Educations.Count; i++)
+                {
+                    var edu = Resume.Educations[i];
+                    resumeText += $"{i + 1}. {edu.Institution}" + nl +
+                                 $"   Степень: {edu.Degree}" + nl +
+                                 $"   Период: {edu.Period}" + nl + nl;
+                }
+            }
+            else
+            {
+                resumeText += "Нет образования" + nl;
+            }
+
+            resumeTextBox.Text = resumeText;
         }
+    }
+
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        resumeTextBox.SelectionStart = 0;
+        resumeTextBox.SelectionLength = 0;
+        resumeTextBox.ScrollToCaret();
     }
 }
