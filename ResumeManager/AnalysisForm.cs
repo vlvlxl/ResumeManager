@@ -43,6 +43,8 @@ namespace ResumeManager
         private Label labelPercent;
         private TextBox textRecommendations;
         private ToolTip toolTip;
+        private Label labelResumes;
+        private Label labelJobs;
 
         private readonly List<Resume> _resumes;
         private readonly List<JobListing> _jobs;
@@ -63,7 +65,7 @@ namespace ResumeManager
         private void InitializeComponent()
         {
             this.Text = "Анализ соответствия резюме вакансии";
-            this.Size = new Size(630, 460);
+            this.Size = new Size(630, 465);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -79,40 +81,54 @@ namespace ResumeManager
                 UseFading = true
             };
 
+            labelResumes = new Label();
+            labelResumes.Text = "Список резюме:";
+            labelResumes.Location = new Point(10, 10);
+            labelResumes.Size = new Size(290, 20);
+            labelResumes.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            labelResumes.ForeColor = Color.DarkBlue;
+
             listResumes = new ListBox();
-            listResumes.Location = new Point(10, 10);
-            listResumes.Size = new Size(290, 200);
+            listResumes.Location = new Point(10, 32);
+            listResumes.Size = new Size(290, 180);
             listResumes.DisplayMember = "DisplayText";
             listResumes.DataSource = CreateResumeListItems(_resumes);
             listResumes.MouseMove += ListResumes_MouseMove;
 
+            labelJobs = new Label();
+            labelJobs.Text = "Список вакансий:";
+            labelJobs.Location = new Point(310, 10);
+            labelJobs.Size = new Size(290, 20);
+            labelJobs.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            labelJobs.ForeColor = Color.DarkGreen;
+
             listJobs = new ListBox();
-            listJobs.Location = new Point(310, 10);
-            listJobs.Size = new Size(290, 200);
+            listJobs.Location = new Point(310, 32);
+            listJobs.Size = new Size(290, 180);
             listJobs.DisplayMember = "DisplayText";
             listJobs.DataSource = CreateJobListItems(_jobs);
             listJobs.MouseMove += ListJobs_MouseMove;
 
             buttonAnalyze = new Button();
             buttonAnalyze.Text = "Анализировать";
-            buttonAnalyze.Location = new Point(250, 220);
+            buttonAnalyze.Location = new Point(250, 225);
             buttonAnalyze.Size = new Size(120, 30);
             buttonAnalyze.Click += analysisButton_Click;
 
             buttonSave = new Button();
             buttonSave.Text = "Сохранить отчёт";
-            buttonSave.Location = new Point(460, 220);
+            buttonSave.Location = new Point(460, 225);
             buttonSave.Size = new Size(140, 30);
             buttonSave.Click += saveButton_Click;
 
             labelPercent = new Label();
             labelPercent.Text = "Соответствие: --%";
-            labelPercent.Location = new Point(10, 265);
+            labelPercent.Location = new Point(10, 270);
             labelPercent.AutoSize = true;
             labelPercent.Font = new Font("Segoe UI", 11, FontStyle.Bold);
 
             textRecommendations = new TextBox();
-            textRecommendations.Location = new Point(10, 295);
+            textRecommendations.Location = new Point(10, 300);
             textRecommendations.Size = new Size(580, 120);
             textRecommendations.Multiline = true;
             textRecommendations.ReadOnly = true;
@@ -121,7 +137,8 @@ namespace ResumeManager
 
             this.Controls.AddRange(new Control[]
             {
-                listResumes, listJobs, buttonAnalyze, buttonSave, labelPercent, textRecommendations
+                labelResumes, listResumes, labelJobs, listJobs,
+                buttonAnalyze, buttonSave, labelPercent, textRecommendations
             });
         }
 
@@ -179,11 +196,31 @@ namespace ResumeManager
             if (index >= 0 && index < _resumes.Count)
             {
                 var resume = _resumes[index];
-                string tip = $"Имя: {resume.Name}\n" +
-                            $"Контакты: {WrapText(resume.ContactInfo, MAX_TOOLTIP_WIDTH)}\n" +
-                            $"Цель: {WrapText(resume.Objective, MAX_TOOLTIP_WIDTH)}\n" +
-                            $"Навыки: {(resume.Skills.Any() ? WrapText(string.Join(", ", resume.Skills), MAX_TOOLTIP_WIDTH) : "не указаны")}";
 
+                string workExpText = " не указан";
+                if (resume.WorkExperiences != null && resume.WorkExperiences.Count > 0)
+                {
+                    var lines = new List<string>();
+                    foreach (var w in resume.WorkExperiences)
+                    {
+                        lines.Add($"  - {w.Position} в {w.Company} ({w.Period})");
+                    }
+                    workExpText = "\n" + string.Join("\n", lines);
+                }
+
+                string educationText = " не указано";
+                if (resume.Educations != null && resume.Educations.Count > 0)
+                {
+                    var lines = resume.Educations.Select(edu => $"  - {edu.Degree} в {edu.Institution} ({edu.Period})");
+                    educationText = "\n" + string.Join("\n", lines);
+                }
+
+                string tip = $"Имя: {resume.Name}\n" +
+                            $"\nКонтакты: {WrapText(resume.ContactInfo, MAX_TOOLTIP_WIDTH)}\n" +
+                            $"\nЦель: {WrapText(resume.Objective, MAX_TOOLTIP_WIDTH)}\n" +
+                            $"\nНавыки: {(resume.Skills.Any() ? WrapText(string.Join(", ", resume.Skills), MAX_TOOLTIP_WIDTH) : "не указаны")}\n" +
+                            $"\nОпыт работы:{workExpText}\n" +
+                            $"\nОбразование:{educationText}";
                 toolTip.SetToolTip(listResumes, tip);
             }
             else
