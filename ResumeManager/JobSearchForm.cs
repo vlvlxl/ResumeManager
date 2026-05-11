@@ -14,6 +14,11 @@ public class JobSearchForm : Form
         StartPosition = FormStartPosition.CenterScreen;
         jobSearchManager = new JobSearchManager();
         CreateControls();
+        this.Shown += (s, e) =>
+        {
+            this.ActiveControl = null;
+            this.Focus();
+        };
     }
 
     private void CreateControls()
@@ -73,6 +78,15 @@ public class JobSearchForm : Form
             Size = new Size(120, 25)
         };
         searchJobListingsButton.Click += (sender, e) => jobSearchManager.SearchJobListings();
+
+        var analysisButton = new Button
+        {
+            Text = "Анализ резюме",
+            Location = new Point(160, 88),
+            Size = new Size(100, 25),
+        };
+        analysisButton.Click += (sender, e) => jobSearchManager.AnalysisForm();
+        this.Controls.Add(analysisButton);
 
         Controls.Add(createResumeButton);
         Controls.Add(addSkillButton);

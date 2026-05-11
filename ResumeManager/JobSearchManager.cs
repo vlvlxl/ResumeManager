@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResumeManager;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -143,5 +144,22 @@ public class JobSearchManager
         var searchJobListingForm = new SearchJobListingForm();
         searchJobListingForm.JobListings = jobListings;
         searchJobListingForm.ShowDialog();
+    }
+
+    public void AnalysisForm()
+    {
+        if (resumes.Count == 0)
+        {
+            MessageBox.Show("Список резюме пуст.");
+            return;
+        }
+        else if (jobListings.Count == 0)
+        {
+
+            MessageBox.Show("Список вакансий пуст.");
+            return;
+        }
+        var analysisForm = new AnalysisForm(resumes, jobListings);
+        analysisForm.ShowDialog();
     }
 }

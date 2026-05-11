@@ -9,14 +9,14 @@ public class AddSkillForm : Form
 
     public AddSkillForm()
     {
-        Text = "Добавить навык";
+        Text = "Добавить навык/навыки";
         Width = 450;       
         Height = 140;      
         StartPosition = FormStartPosition.CenterScreen;
 
         var skillLabel = new Label
         {
-            Text = "Навык:",
+            Text = "Навык/навыки:",
             Location = new Point(10, 10),
             AutoSize = true
         };

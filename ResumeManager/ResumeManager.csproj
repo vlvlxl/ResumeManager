@@ -58,6 +58,7 @@
     <Compile Include="AddWorkExperienceForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AnalysisForm.cs" />
     <Compile Include="CreateResumeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resume.cs" />
+    <Compile Include="ResumeAnalyzer.cs" />
     <Compile Include="ResumeForm.cs">
       <SubType>Form</SubType>
     </Compile>
