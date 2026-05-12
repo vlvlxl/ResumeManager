@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeManager", "ResumeMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeManager.Tests", "ResumeManager.Tests\ResumeManager.Tests.csproj", "{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeManager.Tests.UI", "ResumeManager.Tests.UI\ResumeManager.Tests.UI.csproj", "{8A118681-47EA-415F-91C7-F404C9279C0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46E65A48-B126-4AF0-97A1-BA2E0DC8C089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A118681-47EA-415F-91C7-F404C9279C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A118681-47EA-415F-91C7-F404C9279C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A118681-47EA-415F-91C7-F404C9279C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A118681-47EA-415F-91C7-F404C9279C0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
